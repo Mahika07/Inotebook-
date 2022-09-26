@@ -45,7 +45,6 @@ router.post('/addnotes', fecthuser, [body('title', 'title cannot be empty').exis
         res.status(500).send("some error occured")
     }
 
-
 })
 
 //update the note by getting id
@@ -87,7 +86,7 @@ router.delete('/deletenote/:id', fetchuser, async (req, res) => {
             return res.status(401).send("not allowed")
         }
         note = await Notes.findByIdAndDelete(req.params.id);
-        res.json({ sucess: "note deleted" })
+        res.json({ successs: "note deleted" })
     }
     catch (error) {
         console.log(error)

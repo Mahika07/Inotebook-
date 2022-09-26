@@ -20,8 +20,8 @@ const Login = (props) => {
             body: JSON.stringify({ email: cred.email, password: cred.password })
         })
         const json = await response.json()
-        if (json.sucess) {
-            props.showAlert("loged in sucessfully", "sucess")
+        if (json.success) {
+            props.showAlert("loged in successfully", "success")
             localStorage.setItem("token", json.token)
             navigate("/")
         }

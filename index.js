@@ -20,12 +20,12 @@ if (process.env.NODE_ENV == "production") {
 
     app.use(express.static(path.join("./inotebook/build")));
 
-    app.get("*", function (_, res) {
-        res.sendFile(
-            path.resolve(__dirname, 'inotebook', 'build', 'index.html'),
+    // app.get("*", function (_, res) {
+    //     res.sendFile(
+    //         path.resolve(__dirname, 'inotebook', 'build', 'index.html'),
 
-        )
-    })
+    //     )
+    // })
 
 
 }

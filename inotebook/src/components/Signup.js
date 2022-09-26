@@ -19,8 +19,8 @@ const Signup = (props) => {
         })
         const json = await response.json()
         console.log(json)
-        if (json.sucess) {
-            props.showAlert("Sing up sucessfully", "success")
+        if (json.success) {
+            props.showAlert("Sing up successfully", "success")
             localStorage.setItem("token", json.token)
             navigate("/")
         }

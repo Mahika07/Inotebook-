@@ -3,8 +3,8 @@ const User = require('../models/User');
 const router = express.Router();
 const bcrypt = require('bcryptjs')
 const dotenv = require("dotenv");
-dotenv.config();
-const sshkey = process.env.sshkey || "mahikasharma@$000"
+// dotenv.config();
+// const KEY = process.env.KEY || "mahikasharma@$000"
 const { body, validationResult } = require('express-validator');
 const fetchuser = require('../middleware/fetchuser')
 // router.get('/', (req, res) => {
@@ -21,15 +21,15 @@ router.post('/createuser',
 
     async (req, res) => {
         // Finds the validation errors in this request and wraps them in an object with handy functions
-        let sucess = false;
+        let success = false;
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(400).json({ sucess, errors: errors.array() });
+            return res.status(400).json({ success, errors: errors.array() });
         }
         try {
             let user = await User.findOne({ email: req.body.email });
             if (user) {
-                return res.status(400).json({ sucess, error: "sorry this emil alreday exists" });
+                return res.status(400).json({ success, error: "sorry this emil alreday exists" });
             }
 
             //securing password by adding salt
@@ -52,10 +52,10 @@ router.post('/createuser',
                     id: user.id
                 }
             }
-            const token = jwt.sign(data, sshkey);
-            sucess = true;
+            const token = jwt.sign(data, "mahikasharma@$000");
+            success = true;
             // res.json({ user })
-            res.json({ sucess, token })
+            res.json({ success, token })
         }
         catch (error) {
             console.log(error);
@@ -65,23 +65,23 @@ router.post('/createuser',
 
 //authicating login
 
-router.post('/login', [body('email', 'Enter a valid email').isEmail(), body('password', 'password cannot be blank').exists()], async (req, res) => {
+router.post('/login', [body('email', 'Enter a valid email').isEmail(), body('password', 'password cannot be blank').isLength({ min: 5 })], async (req, res) => {
     const errors = validationResult(req);
-    let sucess = false;
+    let success = false;
     if (!errors.isEmpty()) {
-        return res.status(400).json({ sucess, errors: errors.array() });
+        return res.status(400).json({ success, errors: errors.array() });
     }
     const { email, password } = req.body;
     try {
         let user = await User.findOne({ email });
         if (!user) {
-            sucess = false;
-            return res.status(400).json({ sucess, error: "please login with correct email or password" });
+            success = false;
+            return res.status(400).json({ success, error: "please login with correct email or password" });
         }
         const pass = await bcrypt.compare(password, user.password);
         if (!pass) {
-            sucess = false;
-            return res.status(400).json({ sucess, error: "please login with correct email or password" });
+            success = false;
+            return res.status(400).json({ success, error: "please login with correct email or password" });
         }
         const data = {
             user: {
@@ -89,9 +89,9 @@ router.post('/login', [body('email', 'Enter a valid email').isEmail(), body('pas
             }
         }
 
-        const token = jwt.sign(data, sshkey);
-        sucess = true;
-        res.json({ sucess, token })
+        const token = jwt.sign(data, "mahikasharma@$000");
+        success = true;
+        res.json({ success, token })
     }
     catch (error) {
         console.log(error);
