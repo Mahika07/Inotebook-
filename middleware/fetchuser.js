@@ -8,7 +8,7 @@ const fetchuser = (req, res, next) => {
         res.status(401).send("please authaincate a valid token")
     }
     try {
-        const data = jwt.verify(token, sshkey);
+        const data = jwt.verify(token, sshkey || "mahikasharma@$000");
         req.user = data.user;
         next();
     }

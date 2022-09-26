@@ -52,7 +52,7 @@ router.post('/createuser',
                     id: user.id
                 }
             }
-            const token = jwt.sign(data, sshkey);
+            const token = jwt.sign(data, sshkey || "mahikasharma@$000");
             sucess = true;
             // res.json({ user })
             res.json({ sucess, token })
