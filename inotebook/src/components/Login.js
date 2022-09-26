@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 const Login = (props) => {
-    const host = "https://inotebook-online.herokuapp.com/"
+    const host = "https://inotebook-online.herokuapp.com"
     const [cred, setCred] = useState({ email: " ", password: "" })
     let navigate = useNavigate();
     const handlesubmit = async (e) => {
