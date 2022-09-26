@@ -4,7 +4,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs')
 const dotenv = require("dotenv");
 dotenv.config();
-const sshkey = process.env.sshkey
+const sshkey = process.env.sshkey || "mahikasharma@$000"
 const { body, validationResult } = require('express-validator');
 const fetchuser = require('../middleware/fetchuser')
 // router.get('/', (req, res) => {
@@ -52,7 +52,7 @@ router.post('/createuser',
                     id: user.id
                 }
             }
-            const token = jwt.sign(data, sshkey || "mahikasharma@$000");
+            const token = jwt.sign(data, sshkey);
             sucess = true;
             // res.json({ user })
             res.json({ sucess, token })
