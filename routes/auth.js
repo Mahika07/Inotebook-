@@ -29,7 +29,7 @@ router.post('/createuser',
         try {
             let user = await User.findOne({ email: req.body.email });
             if (user) {
-                return res.status(400).json({ success, error: "sorry this emil alreday exists" });
+                return res.status(400).json({ success, error: "sorry this email already exists" });
             }
 
             //securing password by adding salt
@@ -47,15 +47,19 @@ router.post('/createuser',
             // })
 
             //generating token
+            console.log("all saved")
             const data = {
                 user: {
                     id: user.id
                 }
             }
+            console.log("2 saved")
             const token = jwt.sign(data, "mahikasharma@$000");
+            console.log("3 saved")
             success = true;
             // res.json({ user })
             res.json({ success, token })
+            console.log("4 saved")
         }
         catch (error) {
             console.log(error);

@@ -18,7 +18,7 @@ const Signup = (props) => {
             body: JSON.stringify({ name: cred.name, email: cred.email, password: cred.password })
         })
         const json = await response.json()
-        console.log(json)
+        console.log(json, json.success)
         if (json.success) {
             props.showAlert("Sing up successfully", "success")
             localStorage.setItem("token", json.token)
