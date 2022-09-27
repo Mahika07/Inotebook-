@@ -19,7 +19,7 @@ const UserSchema = new Schema(
             type: Date,
             default: Date.now
         }
-    }
+    }, { freezeTableName: true }
 )
 const user = mongoose.model('User', UserSchema);
 // user.createIndexes()//ab same email to bar nh dal skti

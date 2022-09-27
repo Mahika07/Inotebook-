@@ -23,6 +23,6 @@ const NotesSchema = new Schema(
             type: Date,
             default: Date.now
         }
-    }
+    }, { freezeTableName: true }
 )
 module.exports = mongoose.model('Notes', NotesSchema);
