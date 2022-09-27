@@ -25,7 +25,7 @@ import Notecontext from './NoteContext'
 // }
 
 const NoteState = (props) => {
-    const host = "https://inotebook-online.herokuapp.com"
+    // const host = "https://inotebook-online.herokuapp.com"
     const noteInital = []
     const [notes, setNotes] = useState(noteInital)
 
@@ -35,7 +35,7 @@ const NoteState = (props) => {
     const getNote = async () => {
 
         //api call
-        const url = `${host}/api/note/fecthnotes`
+        const url = `api/note/fecthnotes`
         const response = await fetch(url, {
             method: 'GET', // *GET, POST, PUT, DELETE, etc.
 
@@ -57,7 +57,7 @@ const NoteState = (props) => {
     const addNote = async (title, description, tag) => {
 
         //api call
-        const url = `${host}/api/note/addnotes`
+        const url = `api/note/addnotes`
         const response = await fetch(url, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
 
@@ -80,7 +80,7 @@ const NoteState = (props) => {
     const deleteNote = async (id) => {
 
         //api call
-        const url = `${host}/api/note/deletenote/${id}`
+        const url = `api/note/deletenote/${id}`
         const response = await fetch(url, {
             method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
 
@@ -104,7 +104,7 @@ const NoteState = (props) => {
     const editNote = async (id, title, description, tag) => {
 
         //api call
-        const url = `${host}/api/note/updatenotes/${id}`
+        const url = `api/note/updatenotes/${id}`
         const response = await fetch(url, {
             method: 'PUT', // *GET, POST, PUT, DELETE, etc.
 

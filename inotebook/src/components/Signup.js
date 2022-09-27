@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 const Signup = (props) => {
-    const host = "https://inotebook-online.herokuapp.com"
+    // const host = "https://inotebook-online.herokuapp.com"
     const [cred, setCred] = useState({ name: "", email: " ", password: "" })
     let navigate = useNavigate();
     const handlesubmit = async (e) => {
         e.preventDefault();
-        const url = `${host}/api/auth/createuser`
+        const url = `api/auth/createuser`
         const response = await fetch(url, {
             method: 'POST',
 
