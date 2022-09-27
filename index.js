@@ -18,7 +18,7 @@ app.use('/api/note', require('./routes/note'));
 
 if (process.env.NODE_ENV == "production") {
 
-    app.use(express.static(path.join("/inotebook/build")));
+    app.use(express.static(path.join("./inotebook/build")));
 
     // app.get("*", function (_, res) {
     //     res.sendFile(
