@@ -3,14 +3,11 @@ const User = require('../models/User');
 const router = express.Router();
 const bcrypt = require('bcryptjs')
 const dotenv = require("dotenv");
-// dotenv.config();
-// const KEY = process.env.KEY || "mahikasharma@$000"
+dotenv.config();
+const KEY = process.env.KEY
 const { body, validationResult } = require('express-validator');
 const fetchuser = require('../middleware/fetchuser')
-// router.get('/', (req, res) => {
-//     // console.log(req.body)
-//     res.json([])
-// })
+
 
 var jwt = require('jsonwebtoken');
 
@@ -54,7 +51,7 @@ router.post('/createuser',
                 }
             }
             console.log("2 saved")
-            const token = jwt.sign(data, "mahikasharma@$000");
+            const token = jwt.sign(data, KEY);
             console.log("3 saved")
             success = true;
             // res.json({ user })
@@ -93,7 +90,7 @@ router.post('/login', [body('email', 'Enter a valid email').isEmail(), body('pas
             }
         }
 
-        const token = jwt.sign(data, "mahikasharma@$000");
+        const token = jwt.sign(data, KEY);
         success = true;
         res.json({ success, token })
     }
